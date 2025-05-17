@@ -5,6 +5,7 @@ export interface Todo {
   title: string;
   description: string;
   status: "not started" | "on going" | "finished";
+  id_user: number;
   created_at: string;
   updated_at: string;
 }
@@ -14,8 +15,14 @@ export class TodoModel {
     title: string,
     description: string,
     status: "not started" | "on going" | "finished" = "not started",
+    id_user: number,
   ) {
-    const [todo] = await db("todos").insert({ title, description, status });
+    const [todo] = await db("todos").insert({
+      title,
+      description,
+      status,
+      id_user,
+    });
     return todo;
   }
 
@@ -30,8 +37,7 @@ export class TodoModel {
   ) {
     return db("todos")
       .where({ id: todoId })
-      .update("title", newTitle)
-      .update("description", newDescription);
+      .update({ title: newTitle, description: newDescription });
   }
 
   static async deleteById(todoId: number) {

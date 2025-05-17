@@ -9,6 +9,13 @@ export async function up(knex: Knex): Promise<void> {
       .enu("status", ["not started", "on going", "finished"])
       .notNullable()
       .defaultTo("not started");
+    table
+      .integer("id_user")
+      .unsigned()
+      .notNullable()
+      .references("id")
+      .inTable("users")
+      .onDelete("CASCADE");
     table.timestamps(true, true);
   });
 }

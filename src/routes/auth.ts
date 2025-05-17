@@ -40,7 +40,7 @@ router.post("/register", async (c) => {
     return c.json({
       status: status.SUKSES,
       message: "User registered successfully",
-      datatime: datetime(),
+      datetime: datetime(),
       user,
     });
   } catch (err) {
@@ -48,7 +48,7 @@ router.post("/register", async (c) => {
       {
         status: status.GAGAL,
         message: err as Error,
-        datatime: datetime(),
+        datetime: datetime(),
       },
       500,
     );
@@ -83,7 +83,7 @@ router.post("/login", async (c) => {
       {
         status: status.GAGAL,
         message: err as Error,
-        datatime: datetime(),
+        datetime: datetime(),
       },
       500,
     );
